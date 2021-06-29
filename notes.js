@@ -28,6 +28,11 @@ function init() {
             document.getElementById("noteDisplay").style.display = "block";
         });
 
+        document.getElementById("noteMaster").addEventListener("change", function(e) {
+            displayNote(e.target.value);
+            document.getElementById("noteDisplay").style.display = "block";
+        });
+
         readNotes();
     } else {
         writeNotes();
@@ -37,13 +42,21 @@ function init() {
 function writeNotes() {
     document.getElementById("noteTitle").value = "";
     document.getElementById("noteBody").value = "";
+    document.getElementById("view").style.display = "none";
     document.getElementById("write").style.display = "block";
+    document.getElementById("read").style.display = "none";
+}
+
+function viewNotes() {
+    document.getElementById("view").style.display = "block";
+    document.getElementById("write").style.display = "none";
     document.getElementById("read").style.display = "none";
 }
 
 function readNotes() {
     document.getElementById("read").style.display = "block";
     document.getElementById("write").style.display = "none";
+    document.getElementById("view").style.display = "none";
 }
 
 function displayNote(note) {
@@ -52,9 +65,17 @@ function displayNote(note) {
     let out = "<h2>" + noteArray[note].title + "</h2>";
     out += "<h4>Date created: " + new Date(noteArray[note].date).toDateString() + "</h4>";
     out += "<p>" + noteArray[note].body + "</p>";
+    out += "<button id='btnView'>View Note</button>&nbsp&nbsp";
     out += "<button id='btnDelete'>Delete Note</button>";
 
     document.getElementById("noteDisplay").innerHTML = out;
+
+    document.getElementById("btnView").onclick = function() {
+        viewNotes();
+        document.getElementById("viewTitle").value = noteArray[note].title;
+        document.getElementById("viewBody").value = noteArray[note].body;
+    }
+
     document.getElementById("btnDelete").onclick = function() {
         noteArray.splice(note, 1);
         localStorage.setItem("noteData", JSON.stringify(noteArray));
@@ -78,6 +99,10 @@ btnSave.onclick = function() {
 }
 
 btnCancel.onclick = function() {
+    readNotes();
+}
+
+btnBack.onclick = function() {
     readNotes();
 }
 
