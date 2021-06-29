@@ -42,3 +42,9 @@ select {
         width: 100%!important;
     }
 }
+
+@media only screen and (max-width: 400px) {
+    select {
+        height: 50px!important;
+    }
+}
