@@ -1,0 +1,44 @@
+#container {
+    padding: 10px;
+    width: 50%!important;
+    margin: auto;
+}
+
+#noteBody {
+    height: 200px;
+}
+
+select {
+    height: 200px!important;
+}
+
+#noteDisplay {
+    padding: 20px;
+    border: 1px solid #121212;
+    background-color: aliceblue;
+    border-radius: 5px;
+}
+
+@media only screen and (max-width: 1130px) {
+    #container {
+        width: 60%!important;
+    }
+}
+
+@media only screen and (max-width: 1034px) {
+    #container {
+        width: 70%!important;
+    }
+}
+
+@media only screen and (max-width: 761px) {
+    #container {
+        width: 93%!important;
+    }
+}
+
+@media only screen and (max-width: 462px) {
+    #container {
+        width: 100%!important;
+    }
+}
